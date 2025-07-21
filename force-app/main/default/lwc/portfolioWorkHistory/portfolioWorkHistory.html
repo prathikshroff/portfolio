@@ -2,7 +2,7 @@
   @name              : 
   @author            : pchannab
   @usage             : 
-  @last modified on  : 07-20-2025
+  @last modified on  : 07-21-2025
   @last modified by  : pchannab
   Modifications Log
   Ver   Date         Author     Modification
@@ -10,30 +10,32 @@
 -->
 <template>
     <lightning-card title="Work History">
-        <template if:true={workHistories}>
-            <div class="slds-grid slds-wrap slds-gutters">
-                <template for:each={workHistories} for:item="work">
-                    <div key={work.Id} class="slds-col slds-size_1-of-1 slds-p-vertical_medium">
-                        <lightning-card>
-                            <div class="slds-media slds-media_center slds-p-around_medium">
-                                <div class="slds-media__figure">
-                                    <lightning-icon icon-name="standard:work_order" size="small"></lightning-icon>
-                                </div>
-                                <div class="slds-media__body">
-                                    <div class="slds-text-heading_small">{work.Title__c}</div>
-                                    <p class="slds-text-title_caps slds-m-bottom_xx-small">{work.Work_Location__c}</p>
-                                    <p class="slds-text-body_small slds-text-color_weak">{work.Start_Date__c} - {work.End_Date__c}</p>
-                                    <div class="slds-box slds-theme_default slds-m-top_x-small">
-                                        <p>{work.Work_Summary__c}</p>
-                                    </div>
+        <template if:true={localWorkHistories}>
+            <div class="timeline">
+                <template for:each={localWorkHistories} for:item="work" for:index="index">
+                    <div key={work.Id} class="timeline-item timeline-flex-row">
+                        <div class="timeline-marker" if:false={work.expanded}></div>
+                        <div class="timeline-marker expanded" if:true={work.expanded}></div>
+                        <div class="timeline-content">
+                            <button class="timeline-org slds-button_reset" onclick={handleToggle} data-index={index} aria-expanded={work.expanded}>
+                                <span class="timeline-org-name" if:false={work.expanded}>{work.Name}</span>
+                                <span class="timeline-org-name expanded" if:true={work.expanded}>{work.Name}</span>
+                            </button>
+                            <div class="timeline-years-row">
+                                <span class="timeline-years">{work.startYear} - {work.endYear} <span class="timeline-duration">({work.duration})</span></span>
+                            </div>
+                            <div class="timeline-details" if:true={work.expanded}>
+                                <div class="slds-text-title_caps slds-m-bottom_xx-small">{work.Title__c} &mdash; {work.Work_Location__c}</div>
+                                <div class="slds-box slds-theme_default slds-m-bottom_small">
+                                    <p>{work.Work_Summary__c}</p>
                                 </div>
                             </div>
-                        </lightning-card>
+                        </div>
                     </div>
                 </template>
             </div>
         </template>
-        <template if:false={workHistories}>
+        <template if:false={localWorkHistories}>
             <p class="slds-p-around_medium">No work history found.</p>
         </template>
     </lightning-card>
