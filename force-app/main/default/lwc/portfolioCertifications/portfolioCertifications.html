@@ -1,0 +1,32 @@
+<!--
+  @name              : 
+  @author            : pchannab
+  @usage             : 
+  @last modified on  : 07-20-2025
+  @last modified by  : pchannab
+  Modifications Log
+  Ver   Date         Author     Modification
+  1.0   07-20-2025   pchannab   Initial Version
+-->
+<template>
+    <lightning-card title="Certifications">
+        <template if:true={certifications}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={certifications} for:item="cert">
+                    <div key={cert.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_small">
+                        <lightning-tile label={cert.Name} type="media">
+                            <lightning-avatar slot="media" src={cert.Badge_Image__c} fallback-icon-name="standard:reward" alternative-text="Badge" size="medium"></lightning-avatar>
+                            <div class="slds-m-top_x-small">
+                                <lightning-badge label={cert.Credential_ID__c}></lightning-badge>
+                                <div class="slds-text-body_small slds-m-top_xx-small">Issued: {cert.Issued__c}</div>
+                            </div>
+                        </lightning-tile>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={certifications}>
+            <p class="slds-p-around_medium">No certifications found.</p>
+        </template>
+    </lightning-card>
+</template>

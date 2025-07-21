@@ -1,0 +1,31 @@
+.portfolio-social-icons {
+    display: flex;
+    align-items: center;
+}
+.icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.2s, box-shadow 0.2s;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    outline: none;
+}
+.icon-link:focus, .icon-link:hover {
+    background: #f3f2f2;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+}
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    color: #1b96ff;
+    stroke: #1b96ff;
+    transition: color 0.2s, stroke 0.2s;
+}
+.icon-link:focus .icon-svg, .icon-link:hover .icon-svg {
+    color: #005fb2;
+    stroke: #005fb2;
+} 

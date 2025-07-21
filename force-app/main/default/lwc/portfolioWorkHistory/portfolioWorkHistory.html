@@ -1,0 +1,40 @@
+<!--
+  @name              : 
+  @author            : pchannab
+  @usage             : 
+  @last modified on  : 07-20-2025
+  @last modified by  : pchannab
+  Modifications Log
+  Ver   Date         Author     Modification
+  1.0   07-20-2025   pchannab   Initial Version
+-->
+<template>
+    <lightning-card title="Work History">
+        <template if:true={workHistories}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={workHistories} for:item="work">
+                    <div key={work.Id} class="slds-col slds-size_1-of-1 slds-p-vertical_medium">
+                        <lightning-card>
+                            <div class="slds-media slds-media_center slds-p-around_medium">
+                                <div class="slds-media__figure">
+                                    <lightning-icon icon-name="standard:work_order" size="small"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-text-heading_small">{work.Title__c}</div>
+                                    <p class="slds-text-title_caps slds-m-bottom_xx-small">{work.Work_Location__c}</p>
+                                    <p class="slds-text-body_small slds-text-color_weak">{work.Start_Date__c} - {work.End_Date__c}</p>
+                                    <div class="slds-box slds-theme_default slds-m-top_x-small">
+                                        <p>{work.Work_Summary__c}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={workHistories}>
+            <p class="slds-p-around_medium">No work history found.</p>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,31 @@
+<!--
+  @name              : 
+  @author            : pchannab
+  @usage             : 
+  @last modified on  : 07-20-2025
+  @last modified by  : pchannab
+  Modifications Log
+  Ver   Date         Author     Modification
+  1.0   07-20-2025   pchannab   Initial Version
+-->
+<template>
+    <lightning-card title="Education">
+        <template if:true={education}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={education} for:item="edu">
+                    <div key={edu.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_small">
+                        <lightning-tile label={edu.Institution__c} type="media">
+                            <lightning-icon slot="media" icon-name="standard:education" size="small"></lightning-icon>
+                            <div class="slds-m-top_x-small">
+                                <div class="slds-text-title_caps">{edu.Degree__c}</div>
+                            </div>
+                        </lightning-tile>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={education}>
+            <p class="slds-p-around_medium">No education records found.</p>
+        </template>
+    </lightning-card>
+</template>
